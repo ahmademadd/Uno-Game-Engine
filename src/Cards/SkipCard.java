@@ -1,0 +1,18 @@
+package Cards;
+import Game.Game;
+
+public class SkipCard extends ActionCard{
+    public SkipCard(Colors color) {
+        super(color);
+    }
+
+    @Override
+    public String getName() {
+        return "Skip Card";
+    }
+
+    @Override
+    public void playAction() {
+        Game.skipPlayer();
+    }
+}
