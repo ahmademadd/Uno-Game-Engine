@@ -12,7 +12,7 @@ public class Players {
             this.cardList = cardList;
         }
 
-        public String getName() {
+        public String toString() {
             return name;
         }
 
@@ -21,9 +21,17 @@ public class Players {
         }
     }
     public Queue<Player> playersQueue;
+    private static Players playersInstance;
 
-    public Players() {
+    private Players() {
         playersQueue = new LinkedList<>();
+    }
+
+    public static Players getPlayersInstance() {
+        if (playersInstance == null) {
+            playersInstance = new Players();
+        }
+        return playersInstance;
     }
 
     public void addPlayer(String name, List<Card> cardList) {

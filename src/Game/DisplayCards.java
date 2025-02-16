@@ -13,6 +13,9 @@ public class DisplayCards {
     public static final int cardHeight = 3;
     public static final int spaceBetweenCards = 2;
 
+    private DisplayCards() {
+
+    }
     public static String getColor(Colors color) {
         return switch (color) {
             case RED -> "\u001B[101m";
@@ -73,7 +76,7 @@ public class DisplayCards {
     private static String namePart(List<Card> cardList) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Card card : cardList) {
-            String name = card.getName();
+            String name = card.toString();
             String color;
             if(card.getClass() == Wild.class || card.getClass() == WildDrawFour.class)
                 color = card.getColor() == null ? WHITE : getColor(card.getColor());

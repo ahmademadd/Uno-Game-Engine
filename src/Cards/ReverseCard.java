@@ -7,7 +7,7 @@ public class ReverseCard extends ActionCard {
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         return "Reverse Card";
     }
 

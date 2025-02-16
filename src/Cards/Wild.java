@@ -21,7 +21,6 @@ public class Wild extends WildCards {
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a number!");
-                input.next();
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Selected number is not within the color list range!");
             } catch (Exception e) {
@@ -41,7 +40,7 @@ public class Wild extends WildCards {
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         return "Wild";
     }
 }

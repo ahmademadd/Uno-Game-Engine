@@ -7,7 +7,7 @@ public class DrawTwo extends ActionCard {
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         return "Draw Two";
     }
 

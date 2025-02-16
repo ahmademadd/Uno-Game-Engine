@@ -41,7 +41,7 @@ public class WildDrawFour extends WildCards {
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         return "Draw Four";
     }
 

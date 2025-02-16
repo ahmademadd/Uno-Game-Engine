@@ -1,8 +1,8 @@
 package CustomGame;
 
+import Game.*;
 import Cards.Card;
 import Cards.WildDrawFour;
-import Game.*;
 import Players.Players;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -11,9 +11,10 @@ import java.util.concurrent.*;
 
 public class CustomGame extends Game {
 
+    @Override
     public void play() {
-        players = new Players();
-        deck = new Deck();
+        players = Players.getPlayersInstance();
+        deck = Deck.getInstance();
 
         String[] name = inputPlayers();
 
@@ -22,7 +23,7 @@ public class CustomGame extends Game {
         }
 
         Card card = initializeDiscardPile();
-        discardPile = new DiscardPile(card);
+        discardPile = DiscardPile.getDiscardPileInstance(card);
 
         while (!isGameOver()) {
             Players.Player player = players.playersQueue.remove();
@@ -33,7 +34,7 @@ public class CustomGame extends Game {
     }
 
     public void playerPlayAction(Players.Player player) {
-        System.out.println("Choose your Card " + player.getName() + "! Enter " + (player.getCardList().size() + 1) + " to draw from the deck");
+        System.out.println("Choose your Card " + player.toString() + "! Enter " + (player.getCardList().size() + 1) + " to draw from the deck");
 
         DisplayCards.printPlayerCards(player);
         DisplayCards.printTopDiscardedCard(discardPile.getTopOfPile());
@@ -65,6 +66,32 @@ public class CustomGame extends Game {
         }
     }
 
+    @Override
+    public void checkSayUNO(Players.Player player) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Scanner scanner = new Scanner(System.in);
+
+        Future<String> future = executor.submit(() -> scanner.nextLine());
+
+        try {
+            String input = future.get(4, TimeUnit.SECONDS);
+            if ("UNO".equalsIgnoreCase(input.trim())) {
+                System.out.println("✅ You said UNO in time!");
+            } else
+                throw new Exception("❌ You did not say UNO, you drew 2 cards.");
+
+        } catch (TimeoutException e) {
+            System.out.println("⏳ You did not say UNO in time. you drew 2 cards.");
+            player.getCardList().addAll(deck.draw(2));
+            future.cancel(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            player.getCardList().addAll(deck.draw(2));
+        } finally {
+            executor.shutdown();
+        }
+    }
+
     public Card initializeDiscardPile() {
         Card card = deck.draw(1).getFirst();
         while (card.getClass() == WildDrawFour.class) {
@@ -91,33 +118,7 @@ public class CustomGame extends Game {
         }
         return name;
     }
-
     public void displayWinner() {
-        System.out.println(winner.getName() + " has won the game! 🎉");
-    }
-
-    public void checkSayUNO(Players.Player player) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Scanner scanner = new Scanner(System.in);
-
-        Future<String> future = executor.submit(() -> scanner.nextLine());
-
-        try {
-            String input = future.get(4, TimeUnit.SECONDS);
-            if ("UNO".equalsIgnoreCase(input.trim())) {
-                System.out.println("✅ You said UNO in time!");
-            } else
-                throw new Exception("❌ You did not say UNO, you drew 2 cards.");
-
-        } catch (TimeoutException e) {
-            System.out.println("⏳ You did not say UNO in time. you drew 2 cards.");
-            player.getCardList().addAll(deck.draw(2));
-            future.cancel(false);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            player.getCardList().addAll(deck.draw(2));
-        } finally {
-            executor.shutdown();
-        }
+        System.out.println(winner.toString() + " has won the game! 🎉");
     }
 }

@@ -7,7 +7,7 @@ public class SkipCard extends ActionCard{
     }
 
     @Override
-    public String getName() {
+    public String toString() {
         return "Skip Card";
     }
 

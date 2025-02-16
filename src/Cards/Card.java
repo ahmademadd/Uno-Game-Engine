@@ -13,5 +13,5 @@ public abstract class Card implements CardAction {
 
     public abstract void playAction();
 
-    public abstract String getName();
+    public abstract String toString();
 }

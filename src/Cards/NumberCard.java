@@ -17,7 +17,7 @@ public class NumberCard extends Card {
     }
 
     @Override
-    public String getName() {
-        return "Number " + getNumber();
+    public String toString() {
+        return "Number Card " + getNumber();
     }
 }

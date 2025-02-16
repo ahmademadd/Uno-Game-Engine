@@ -1,5 +1,5 @@
 package Cards;
 
-public  interface CardAction {
+public interface CardAction {
     void playAction();
 }

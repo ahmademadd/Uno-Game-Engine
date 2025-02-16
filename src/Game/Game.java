@@ -6,9 +6,9 @@ import java.util.*;
 
 public abstract class Game {
     protected int initialCardDraw = 7;
+    protected DiscardPile discardPile;
     protected static Players players;
     protected static Deck deck;
-    protected DiscardPile discardPile;
     protected Players.Player winner;
 
     public boolean isGameOver() {
@@ -43,5 +43,5 @@ public abstract class Game {
     }
 
     public abstract void play();
-
+    public abstract void checkSayUNO(Players.Player player);
 }

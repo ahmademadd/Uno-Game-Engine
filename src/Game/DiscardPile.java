@@ -9,11 +9,18 @@ import java.util.List;
 public class DiscardPile {
     private Colors color;
     private final List<Card> discardPile;
+    private static DiscardPile discardPileInstance;
 
-    public DiscardPile(Card card) {
+    private DiscardPile(Card card) {
         discardPile = new ArrayList<>();
         discardPile.add(card);
         this.color = card.getColor();
+    }
+
+    public static DiscardPile getDiscardPileInstance(Card card) {
+        if (discardPileInstance == null)
+            discardPileInstance = new DiscardPile(card);
+        return discardPileInstance;
     }
 
     public List<Card> getDiscardPile() {
