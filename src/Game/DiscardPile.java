@@ -17,7 +17,7 @@ public class DiscardPile {
         this.color = card.getColor();
     }
 
-    public static DiscardPile getDiscardPileInstance(Card card) {
+    public static DiscardPile getInstance(Card card) {
         if (discardPileInstance == null)
             discardPileInstance = new DiscardPile(card);
         return discardPileInstance;
@@ -36,7 +36,6 @@ public class DiscardPile {
     }
 
     public void addToPile(Card card) throws RuntimeException {
-
         if (getTopOfPile() instanceof NumberCard pileNumberCard) {
             if (card instanceof NumberCard playerNumberedCard
                     && pileNumberCard.getColor() != playerNumberedCard.getColor()

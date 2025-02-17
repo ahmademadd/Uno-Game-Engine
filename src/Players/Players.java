@@ -5,9 +5,9 @@ import java.util.*;
 public class Players {
     public class Player {
         private final String name;
-        private List<Card> cardList;
+        private final List<Card> cardList;
 
-        public Player(String name, List<Card> cardList) {
+        private Player(String name, List<Card> cardList) {
             this.name = name;
             this.cardList = cardList;
         }
@@ -27,7 +27,7 @@ public class Players {
         playersQueue = new LinkedList<>();
     }
 
-    public static Players getPlayersInstance() {
+    public static Players getInstance() {
         if (playersInstance == null) {
             playersInstance = new Players();
         }

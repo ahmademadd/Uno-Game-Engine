@@ -13,7 +13,7 @@ public class CustomGame extends Game {
 
     @Override
     public void play() {
-        players = Players.getPlayersInstance();
+        players = Players.getInstance();
         deck = Deck.getInstance();
 
         String[] name = inputPlayers();
@@ -23,7 +23,7 @@ public class CustomGame extends Game {
         }
 
         Card card = initializeDiscardPile();
-        discardPile = DiscardPile.getDiscardPileInstance(card);
+        discardPile = DiscardPile.getInstance(card);
 
         while (!isGameOver()) {
             Players.Player player = players.playersQueue.remove();

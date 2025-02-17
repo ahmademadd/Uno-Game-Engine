@@ -11,7 +11,7 @@ public class Deck {
     private final List<Card> deck;
     private static Deck deckInstance;
 
-    public Deck(){
+    private Deck(){
         deck = new ArrayList<>();
 
         for (int i = 0; i <= numOfNumberCards; i++) {
