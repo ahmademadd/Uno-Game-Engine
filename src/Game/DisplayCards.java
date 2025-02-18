@@ -13,9 +13,8 @@ public class DisplayCards {
     public static final int cardHeight = 3;
     public static final int spaceBetweenCards = 2;
 
-    private DisplayCards() {
+    private DisplayCards() {}
 
-    }
     public static String getColor(Colors color) {
         return switch (color) {
             case RED -> "\u001B[101m";

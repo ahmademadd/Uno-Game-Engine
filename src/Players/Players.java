@@ -21,17 +21,17 @@ public class Players {
         }
     }
     public Queue<Player> playersQueue;
-    private static Players playersInstance;
+    private static Players Instance;
 
     private Players() {
         playersQueue = new LinkedList<>();
     }
 
     public static Players getInstance() {
-        if (playersInstance == null) {
-            playersInstance = new Players();
+        if (Instance == null) {
+            Instance = new Players();
         }
-        return playersInstance;
+        return Instance;
     }
 
     public void addPlayer(String name, List<Card> cardList) {

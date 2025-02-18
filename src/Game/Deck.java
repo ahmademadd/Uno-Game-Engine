@@ -9,7 +9,7 @@ public class Deck {
     static final int numOfActionCards = 8;
     static final int numOfNumberCards = 9;
     private final List<Card> deck;
-    private static Deck deckInstance;
+    private static Deck Instance;
 
     private Deck(){
         deck = new ArrayList<>();
@@ -39,9 +39,9 @@ public class Deck {
     }
 
     public static Deck getInstance() {
-        if (deckInstance == null)
-            deckInstance = new Deck();
-        return deckInstance;
+        if (Instance == null)
+            Instance = new Deck();
+        return Instance;
     }
 
     public List<Card> draw(int number) {
