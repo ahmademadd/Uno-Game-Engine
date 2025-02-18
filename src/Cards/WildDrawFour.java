@@ -1,5 +1,6 @@
 package Cards;
 import Game.*;
+import Players.Players;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -31,7 +32,8 @@ public class WildDrawFour extends WildCards {
 
     @Override
     public void playAction() {
-        Game.draw(4);
+        Players.Player player = Players.getInstance().playersQueue.peek();
+        player.getCardList().addAll(Deck.getInstance().draw(4));
         try {
             setColor();
         } catch (RuntimeException e) {

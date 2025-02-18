@@ -1,5 +1,5 @@
 package Cards;
-import Game.Game;
+import Players.Players;
 
 public class SkipCard extends ActionCard{
     public SkipCard(Colors color) {
@@ -13,6 +13,7 @@ public class SkipCard extends ActionCard{
 
     @Override
     public void playAction() {
-        Game.skipPlayer();
+        Players players = Players.getInstance();
+        players.playersQueue.add(players.playersQueue.remove());
     }
 }

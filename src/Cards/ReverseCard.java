@@ -1,5 +1,7 @@
 package Cards;
-import Game.*;
+import Players.Players;
+
+import java.util.Stack;
 
 public class ReverseCard extends ActionCard {
     public ReverseCard(Colors color) {
@@ -13,6 +15,11 @@ public class ReverseCard extends ActionCard {
 
     @Override
     public void playAction() {
-        Game.reverseQueue();
+        Players players = Players.getInstance();
+        Stack<Players.Player> stack = new Stack<>();
+        while (!players.playersQueue.isEmpty())
+            stack.add(players.playersQueue.remove());
+        while (!stack.isEmpty())
+            players.playersQueue.add(stack.pop());
     }
 }

@@ -1,5 +1,6 @@
 package Cards;
 import Game.*;
+import Players.Players;
 
 public class DrawTwo extends ActionCard {
     public DrawTwo(Colors color) {
@@ -13,6 +14,7 @@ public class DrawTwo extends ActionCard {
 
     @Override
     public void playAction() {
-        Game.draw(2);
+        Players.Player player = Players.getInstance().playersQueue.peek();
+        player.getCardList().addAll(Deck.getInstance().draw(2));
     }
 }
