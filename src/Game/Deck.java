@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-    static final int numOfActionCards = 8;
-    static final int numOfNumberCards = 9;
-    private final List<Card> deck;
+    final int numOfActionCards = 8;
+    final int numOfNumberCards = 9;
+    private List<Card> deck;
     private static Deck Instance;
 
-    private Deck(){
+    private Deck() {
         deck = new ArrayList<>();
 
         for (int i = 0; i <= numOfNumberCards; i++) {

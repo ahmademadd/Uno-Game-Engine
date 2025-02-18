@@ -12,13 +12,14 @@ public class CustomGame extends Game {
     public void play() {
         players = Players.getInstance();
         deck = Deck.getInstance();
-        discardPile = DiscardPile.getInstance();
 
         String[] name = inputPlayers();
 
         for (String playerName : name) {
             players.addPlayer(playerName, deck.draw(initialCardDraw));
         }
+
+        discardPile = DiscardPile.getInstance();
 
         while (!isGameOver()) {
             Players.Player player = players.playersQueue.remove();
@@ -30,7 +31,6 @@ public class CustomGame extends Game {
 
     public void playerPlayAction(Players.Player player) {
         System.out.println("Choose your Card " + player.toString() + "! Enter " + (player.getCardList().size() + 1) + " to draw from the deck");
-
         DisplayCards.printPlayerCards(player);
         DisplayCards.printTopDiscardedCard(discardPile.getTopOfPile());
 
@@ -46,7 +46,7 @@ public class CustomGame extends Game {
                 discardPile.addToPile(player.getCardList().get(selectedCard - 1));
                 player.getCardList().remove(selectedCard - 1);
                 if (player.getCardList().size() == 1)
-                    checkSayUNO(player);
+                    sayUno(player);
                 break;
             } catch (RuntimeException e) {
                 if (e instanceof InputMismatchException) {
@@ -62,11 +62,10 @@ public class CustomGame extends Game {
     }
 
     @Override
-    public void checkSayUNO(Players.Player player) {
+    public void sayUno(Players.Player player) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Scanner scanner = new Scanner(System.in);
-
-        Future<String> future = executor.submit(() -> scanner.nextLine());
+        Future<String> future = executor.submit(scanner::nextLine);
 
         try {
             String input = future.get(4, TimeUnit.SECONDS);
@@ -103,6 +102,7 @@ public class CustomGame extends Game {
         }
         return name;
     }
+
     public void displayWinner() {
         System.out.println(winner.toString() + " has won the game! 🎉");
     }

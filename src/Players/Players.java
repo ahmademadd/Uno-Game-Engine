@@ -3,9 +3,9 @@ import Cards.Card;
 import java.util.*;
 
 public class Players {
-    public class Player {
+    public static class Player {
         private final String name;
-        private final List<Card> cardList;
+        private List<Card> cardList;
 
         private Player(String name, List<Card> cardList) {
             this.name = name;

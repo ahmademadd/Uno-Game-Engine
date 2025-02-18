@@ -13,8 +13,7 @@ public class NumberCard extends Card {
     }
 
     @Override
-    public void playAction() {
-    }
+    public void playAction() {}
 
     @Override
     public String toString() {

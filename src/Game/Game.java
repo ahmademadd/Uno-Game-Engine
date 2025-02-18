@@ -3,10 +3,10 @@ package Game;
 import Players.*;
 
 public abstract class Game {
-    protected int initialCardDraw = 7;
+    protected Players players;
+    protected Deck deck;
     protected DiscardPile discardPile;
-    protected static Players players;
-    protected static Deck deck;
+    protected int initialCardDraw = 7;
     protected Players.Player winner;
 
     public boolean isGameOver() {
@@ -20,5 +20,5 @@ public abstract class Game {
     }
 
     public abstract void play();
-    public abstract void checkSayUNO(Players.Player player);
+    public abstract void sayUno(Players.Player player);
 }

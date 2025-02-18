@@ -13,7 +13,6 @@ public class ReverseCard extends ActionCard {
         return "Reverse Card";
     }
 
-    // TODO: FIX BUG
     @Override
     public void playAction() {
         Players players = Players.getInstance();
@@ -25,6 +24,7 @@ public class ReverseCard extends ActionCard {
                 stack.add(players.playersQueue.remove());
             while (!stack.isEmpty())
                 players.playersQueue.add(stack.pop());
+            players.playersQueue.add(players.playersQueue.remove());
         }
     }
 }
