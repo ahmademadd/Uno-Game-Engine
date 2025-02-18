@@ -17,9 +17,19 @@ public class DiscardPile {
         this.color = card.getColor();
     }
 
-    public static DiscardPile getInstance(Card card) {
+    private static Card initalCard() {
+        Card card = Deck.getInstance().draw(1).getFirst();
+        while (card.getClass() == WildDrawFour.class) {
+            Deck.getInstance().returnToDeck(List.of(card));
+            card = Deck.getInstance().draw(1).getFirst();
+        }
+        card.playAction();
+        return card;
+    }
+
+    public static DiscardPile getInstance() {
         if (Instance == null)
-            Instance = new DiscardPile(card);
+            Instance = new DiscardPile(initalCard());
         return Instance;
     }
 

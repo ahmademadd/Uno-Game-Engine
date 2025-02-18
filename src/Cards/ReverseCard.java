@@ -16,10 +16,14 @@ public class ReverseCard extends ActionCard {
     @Override
     public void playAction() {
         Players players = Players.getInstance();
-        Stack<Players.Player> stack = new Stack<>();
-        while (!players.playersQueue.isEmpty())
-            stack.add(players.playersQueue.remove());
-        while (!stack.isEmpty())
-            players.playersQueue.add(stack.pop());
+        if (players.playersQueue.size() == 2)
+            players.playersQueue.add(players.playersQueue.remove());
+        else {
+            Stack<Players.Player> stack = new Stack<>();
+            while (!players.playersQueue.isEmpty())
+                stack.add(players.playersQueue.remove());
+            while (!stack.isEmpty())
+                players.playersQueue.add(stack.pop());
+        }
     }
 }

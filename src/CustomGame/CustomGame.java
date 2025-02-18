@@ -1,11 +1,8 @@
 package CustomGame;
 
 import Game.*;
-import Cards.Card;
-import Cards.WildDrawFour;
 import Players.Players;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.*;
 
@@ -15,15 +12,13 @@ public class CustomGame extends Game {
     public void play() {
         players = Players.getInstance();
         deck = Deck.getInstance();
+        discardPile = DiscardPile.getInstance();
 
         String[] name = inputPlayers();
 
         for (String playerName : name) {
             players.addPlayer(playerName, deck.draw(initialCardDraw));
         }
-
-        Card card = initializeDiscardPile();
-        discardPile = DiscardPile.getInstance(card);
 
         while (!isGameOver()) {
             Players.Player player = players.playersQueue.remove();
@@ -90,16 +85,6 @@ public class CustomGame extends Game {
         } finally {
             executor.shutdown();
         }
-    }
-
-    public Card initializeDiscardPile() {
-        Card card = deck.draw(1).getFirst();
-        while (card.getClass() == WildDrawFour.class) {
-            deck.returnToDeck(List.of(card));
-            card = deck.draw(1).getFirst();
-        }
-        card.playAction();
-        return card;
     }
 
     public String[] inputPlayers() {
