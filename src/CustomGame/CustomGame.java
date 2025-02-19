@@ -36,7 +36,7 @@ public class CustomGame extends Game {
 
         Scanner scanner = new Scanner(System.in);
         int selectedCard;
-        while(true) {
+        while (true) {
             try {
                 selectedCard = scanner.nextInt();
                 if (selectedCard == player.getCardList().size() + 1) {
@@ -48,15 +48,13 @@ public class CustomGame extends Game {
                 if (player.getCardList().size() == 1)
                     sayUno(player);
                 break;
-            } catch (RuntimeException e) {
-                if (e instanceof InputMismatchException) {
-                    System.out.println("Please enter a number!");
-                    scanner.next();
-                }
-                else if (e instanceof IndexOutOfBoundsException)
-                    System.out.println("Selected number is not within the card list range!");
-                else
-                    System.out.println(e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a number!");
+                scanner.next();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Selected number is not within the card list range!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -73,7 +71,6 @@ public class CustomGame extends Game {
                 System.out.println("✅ You said UNO in time!");
             } else
                 throw new Exception("❌ You did not say UNO, you drew 2 cards.");
-
         } catch (TimeoutException e) {
             System.out.println("⏳ You did not say UNO in time. you drew 2 cards.");
             player.getCardList().addAll(deck.draw(2));
