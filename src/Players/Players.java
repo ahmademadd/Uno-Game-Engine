@@ -12,6 +12,7 @@ public class Players {
             this.cardList = cardList;
         }
 
+        @Override
         public String toString() {
             return name;
         }
@@ -20,8 +21,12 @@ public class Players {
             return cardList;
         }
     }
-    public Queue<Player> playersQueue;
+    private final Queue<Player> playersQueue;
     private static Players Instance;
+
+    public Queue<Player> getPlayersQueue() {
+        return playersQueue;
+    }
 
     private Players() {
         playersQueue = new LinkedList<>();

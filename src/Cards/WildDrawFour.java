@@ -10,7 +10,7 @@ public class WildDrawFour extends WildCards {
 
     @Override
     public void playAction() {
-        Players.Player player = Players.getInstance().playersQueue.peek();
+        Players.Player player = Players.getInstance().getPlayersQueue().peek();
         player.getCardList().addAll(Deck.getInstance().draw(4));
         try {
             setColor();

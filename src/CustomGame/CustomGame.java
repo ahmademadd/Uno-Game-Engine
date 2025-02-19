@@ -22,8 +22,8 @@ public class CustomGame extends Game {
         discardPile = DiscardPile.getInstance();
 
         while (!isGameOver()) {
-            Players.Player player = players.playersQueue.remove();
-            players.playersQueue.add(player);
+            Players.Player player = players.getPlayersQueue().remove();
+            players.getPlayersQueue().add(player);
             playerPlayAction(player);
         }
         displayWinner();

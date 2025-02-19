@@ -12,5 +12,6 @@ public abstract class Card implements CardAction {
     }
 
     public abstract void playAction();
+    @Override
     public abstract String toString();
 }

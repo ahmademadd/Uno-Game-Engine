@@ -10,7 +10,7 @@ public abstract class Game {
     protected Players.Player winner;
 
     public boolean isGameOver() {
-        for (Players.Player player : players.playersQueue) {
+        for (Players.Player player : players.getPlayersQueue()) {
             if (player.getCardList().isEmpty()) {
                 winner = player;
                 return true;

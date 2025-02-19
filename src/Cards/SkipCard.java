@@ -14,6 +14,6 @@ public class SkipCard extends ActionCard{
     @Override
     public void playAction() {
         Players players = Players.getInstance();
-        players.playersQueue.add(players.playersQueue.remove());
+        players.getPlayersQueue().add(players.getPlayersQueue().remove());
     }
 }
