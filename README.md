@@ -61,10 +61,11 @@ The **UNO Game Engine** is a flexible and extensible backend for creating and ma
    ```
 
 ## How to Use
-- **Initialize the game engine** by creating an instance of `Game`.
-- **Manage game flow** by handling turns, playing cards, and drawing from the deck.
-- **Customize card behaviors** by extending `Card` or `WildCards`.
-
+- **Create object of type Game** by extending `Game` and implementing method play().
+- **Add new game features** by implementing methods or overriding methods.
+- **Create custom cards** by extending `Card`, `WildCards`, or `ActionCard` then centralizes your card creation in CardFactory, lastely use deck.addToDeck().
+- **Start the game** by calling method startGame() within play().
+ 
 ## Design Principles & Patterns
 - **SOLID Principles**: Ensures clean, maintainable, and scalable code.
 - **Singleton Pattern**: Used in `Deck`, `DiscardPile`, and `Players` to enforce single instances.
