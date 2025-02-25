@@ -7,27 +7,24 @@ import java.util.List;
 
 public class DiscardPile {
     private List<Card> discardPile;
-    private static DiscardPile Instance;
+    private static final DiscardPile Instance = new DiscardPile(initalCard());
 
     private DiscardPile(Card card) {
         discardPile = new ArrayList<>();
         discardPile.add(card);
     }
 
-    private static Card initalCard() {
-        Card card = Deck.getInstance().draw(1).getFirst();
-        while (card.getClass() == WildDrawFour.class) {
-            Deck.getInstance().returnToDeck(List.of(card));
-            card = Deck.getInstance().draw(1).getFirst();
-        }
-        card.playAction();
-        return card;
+    public static DiscardPile getInstance() {
+        return Instance;
     }
 
-    public static DiscardPile getInstance() {
-        if (Instance == null)
-            Instance = new DiscardPile(initalCard());
-        return Instance;
+    private static Card initalCard() {
+        Card card = Deck.getInstance().draw(1).getFirst();
+        while (card instanceof WildCards) {
+            Deck.getInstance().addToDeck(List.of(card));
+            card = Deck.getInstance().draw(1).getFirst();
+        }
+        return card;
     }
 
     public void addToPile(Card card) throws RuntimeException {

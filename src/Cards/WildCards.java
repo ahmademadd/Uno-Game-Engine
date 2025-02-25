@@ -9,14 +9,15 @@ public abstract class WildCards extends Card {
         super(color);
     }
 
-    public void setColor() {
+    public Colors setColor() {
         System.out.println("Choose a color: ");
         DisplayCards.printColorCards();
         Scanner input = new Scanner(System.in);
+        int chosenColor;
         while (true) {
             try {
-                int chosenColor = input.nextInt();
-                this.color = Colors.values()[chosenColor - 1];
+                chosenColor = input.nextInt();
+                setColor(Colors.values()[chosenColor - 1]);
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a number!");
@@ -27,5 +28,6 @@ public abstract class WildCards extends Card {
                 System.out.println(e.getMessage());
             }
         }
+        return Colors.values()[chosenColor - 1];
     }
 }

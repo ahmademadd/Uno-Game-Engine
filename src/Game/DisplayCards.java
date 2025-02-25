@@ -52,7 +52,7 @@ public class DisplayCards {
         for(int i = 0; i < cardHeight; i++) {
             for (Card card : cardList) {
                 String color;
-                if(card.getClass() == Wild.class || card.getClass() == WildDrawFour.class)
+                if(card instanceof WildCards)
                     color = card.getColor() == null ? WHITE : getColor(card.getColor());
                 else
                     color = getColor(card.getColor());
@@ -77,9 +77,8 @@ public class DisplayCards {
         for (Card card : cardList) {
             String name = card.toString();
             String color;
-            if(card.getClass() == Wild.class || card.getClass() == WildDrawFour.class)
+            if(card instanceof WildCards)
                 color = card.getColor() == null ? WHITE : getColor(card.getColor());
-
             else if(card.getClass() == NumberCard.class) {
                 name = Integer.toString(((NumberCard) card).getNumber());
                 color = getColor(card.getColor());

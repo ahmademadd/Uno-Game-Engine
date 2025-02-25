@@ -22,21 +22,18 @@ public class Players {
         }
     }
     private final Queue<Player> playersQueue;
-    private static Players Instance;
-
-    public Queue<Player> getPlayersQueue() {
-        return playersQueue;
-    }
+    private static final Players Instance = new Players();
 
     private Players() {
         playersQueue = new LinkedList<>();
     }
 
     public static Players getInstance() {
-        if (Instance == null) {
-            Instance = new Players();
-        }
         return Instance;
+    }
+
+    public Queue<Player> getPlayersQueue() {
+        return playersQueue;
     }
 
     public void addPlayer(String name, List<Card> cardList) {

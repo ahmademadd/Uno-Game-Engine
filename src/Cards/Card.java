@@ -7,11 +7,15 @@ public abstract class Card implements CardAction {
         this.color = color;
     }
 
+    @Override
     public Colors getColor() {
         return color;
     }
 
-    public abstract void playAction();
+    @Override
+    public void setColor(Colors color) {
+        this.color = color;
+    }
     @Override
     public abstract String toString();
 }

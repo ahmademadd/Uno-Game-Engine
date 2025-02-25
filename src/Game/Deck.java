@@ -7,40 +7,38 @@ import java.util.List;
 
 public class Deck {
     final int numOfActionCards = 8;
-    final int numOfNumberCards = 9;
+    final int numOfWildCards = 4;
+    final int cardNumbers = 9;
     private List<Card> deck;
-    private static Deck Instance;
+    private static final Deck Instance = new Deck();
 
     private Deck() {
         deck = new ArrayList<>();
-
-        for (int i = 0; i <= numOfNumberCards; i++) {
+        for (int i = 0; i <= cardNumbers; i++) {
             deck.add(CardFactory.createCard(i, Colors.RED));
             deck.add(CardFactory.createCard(i, Colors.YELLOW));
             deck.add(CardFactory.createCard(i, Colors.GREEN));
             deck.add(CardFactory.createCard(i, Colors.BLUE));
-            if (i > 0) {
-                deck.add(CardFactory.createCard(i, Colors.RED));
-                deck.add(CardFactory.createCard(i, Colors.YELLOW));
-                deck.add(CardFactory.createCard(i, Colors.GREEN));
-                deck.add(CardFactory.createCard(i, Colors.BLUE));
-            }
+        }
+        for (int i = 1; i <= cardNumbers; i++) {
+            deck.add(CardFactory.createCard(i, Colors.RED));
+            deck.add(CardFactory.createCard(i, Colors.YELLOW));
+            deck.add(CardFactory.createCard(i, Colors.GREEN));
+            deck.add(CardFactory.createCard(i, Colors.BLUE));
         }
         for (int i = 0; i < numOfActionCards; i++) {
-            deck.add(CardFactory.createCard("DrawTwo", Colors.values()[i%4]));
+            deck.add(CardFactory.createCard("Draw Two", Colors.values()[i%4]));
             deck.add(CardFactory.createCard("Skip", Colors.values()[i%4]));
             deck.add(CardFactory.createCard("Reverse",Colors.values()[i%4]));
-            if (i < 4)
-                deck.add(CardFactory.createCard("Wild"));
-            else
-                deck.add(CardFactory.createCard("WildDrawFour"));
+        }
+        for (int i = 0; i < numOfWildCards; i++) {
+            deck.add(CardFactory.createCard("Wild"));
+            deck.add(CardFactory.createCard("Wild Draw Four"));
         }
         shuffleDeck();
     }
 
     public static Deck getInstance() {
-        if (Instance == null)
-            Instance = new Deck();
         return Instance;
     }
 
@@ -52,13 +50,13 @@ public class Deck {
         return cards;
     }
 
-    public void shuffleDeck() {
-        Collections.shuffle(deck);
-    }
-
-    public void returnToDeck(List<Card> card) {
+    public void addToDeck(List<Card> card) {
         deck.addAll(card);
         shuffleDeck();
+    }
+
+    public void shuffleDeck() {
+        Collections.shuffle(deck);
     }
 
 }
