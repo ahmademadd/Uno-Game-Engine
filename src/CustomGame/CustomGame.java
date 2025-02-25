@@ -3,14 +3,12 @@ package CustomGame;
 import Cards.*;
 import Game.*;
 import Players.Players;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class CustomGame extends Game {
     @Override
     public void play() {
+        initialCardDraw = 10;
         addCustomCard();
         startGame();
         displayWinner();
@@ -27,7 +25,7 @@ public class CustomGame extends Game {
     public void sortCardList(Players.Player player) {
         List<Colors> colorPriority = Arrays.asList(Colors.RED, Colors.GREEN, Colors.BLUE, Colors.YELLOW, null);
         player.getCardList().sort(Comparator.comparing(
-            card -> colorPriority.indexOf(card.getColor()) // Sort by color index
+            card -> colorPriority.indexOf(card.getColor())
         ));
     }
 

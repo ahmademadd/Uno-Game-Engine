@@ -9,7 +9,7 @@ public abstract class Game {
     protected Deck deck = Deck.getInstance();
     protected Players players = Players.getInstance();
     protected DiscardPile discardPile = DiscardPile.getInstance();
-    protected final int initialCardDraw = 7;
+    protected int initialCardDraw = 7;
     protected Players.Player winner;
 
     public final boolean isGameOver() {

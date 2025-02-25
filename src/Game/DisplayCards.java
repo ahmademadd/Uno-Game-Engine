@@ -52,10 +52,7 @@ public class DisplayCards {
         for(int i = 0; i < cardHeight; i++) {
             for (Card card : cardList) {
                 String color;
-                if(card instanceof WildCards)
-                    color = card.getColor() == null ? WHITE : getColor(card.getColor());
-                else
-                    color = getColor(card.getColor());
+                color = card.getColor() == null ? WHITE : getColor(card.getColor());
                 String fill = color + space(cardWidth) + RESET + space(spaceBetweenCards);
                 stringBuilder.append(fill);
             }
@@ -76,15 +73,10 @@ public class DisplayCards {
         StringBuilder stringBuilder = new StringBuilder();
         for (Card card : cardList) {
             String name = card.toString();
-            String color;
-            if(card instanceof WildCards)
-                color = card.getColor() == null ? WHITE : getColor(card.getColor());
-            else if(card.getClass() == NumberCard.class) {
+            if(card instanceof NumberCard)
                 name = Integer.toString(((NumberCard) card).getNumber());
-                color = getColor(card.getColor());
-            }
-            else
-                color = getColor(card.getColor());
+            String color;
+            color = card.getColor() == null ? WHITE : getColor(card.getColor());
             int spaceCount = (cardWidth - name.length()) / 2;
             String fill = color + space(spaceCount) + BLACK_FONT + name + space(cardWidth - (name.length() + spaceCount)) + RESET + space(spaceBetweenCards);
             stringBuilder.append(fill);
