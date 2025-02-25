@@ -34,8 +34,12 @@ The **UNO Game Engine** is a flexible and extensible backend for creating and ma
 │   │   ├── Deck.java
 │   │   ├── DisplayCards.java
 │   │   ├── DiscardPile.java
+|   ├── Exceptions
+|   |   ├── DuplicatePlayerNames.java
+|   |   ├── IllegalNumOfPlayers.java
 │   ├── CustomGame
 |   |   ├── CustomGame.java
+|   |   ├── WildSetAllCardsColors.java
 │   ├── Players
 │   │   ├── Players.java
 │   └── GameDriver.java
@@ -59,7 +63,7 @@ The **UNO Game Engine** is a flexible and extensible backend for creating and ma
 ## How to Use
 - **Initialize the game engine** by creating an instance of `Game`.
 - **Manage game flow** by handling turns, playing cards, and drawing from the deck.
-- **Customize card behaviors** by extending `AbstractActionCard` or `AbstractWildCard`.
+- **Customize card behaviors** by extending `Card` or `WildCards`.
 
 ## Design Principles & Patterns
 - **SOLID Principles**: Ensures clean, maintainable, and scalable code.
