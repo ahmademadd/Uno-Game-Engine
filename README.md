@@ -1,7 +1,10 @@
 # UNO Game Engine
 
-## Documentation
-For detailed information on the engine, refer to the [Uno Game Engine Documentation](Uno%20Game%20Engine%20Documentation.pdf).
+
+_By Ahmad Emad_  
+- **YouTube Video**: [Watch Here](https://www.youtube.com/watch?v=ZRmgn5XnIGI)  
+- **Documentation**: [Click Here](Uno%20Game%20Engine%20Documentation.pdf).
+- **Email**: [ahmademad995.ae@gmail.com](mailto:ahmademad995.ae@gmail.com)
 
 ## Overview
 The **UNO Game Engine** is a flexible and extensible backend for creating and managing UNO games. Designed with **object-oriented principles** and **design patterns**, it allows developers to implement their own versions of UNO with minimal effort. The engine ensures **clean architecture**, **scalability**, and **maintainability**.
